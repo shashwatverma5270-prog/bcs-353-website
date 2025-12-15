@@ -1,80 +1,432 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Web Designing Workshop - BCS-353</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellar Car - The Future of Driving</title>
     <style>
+        /* --- Global Styles --- */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f6f8;
+            background-color: #f0f2f5; /* Light background */
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth; /* Smooth scrolling to anchors */
         }
+
         header {
-            background-color: #1e3a8a;
-            color: white;
-            padding: 20px;
-            text-align: center;
+            background-color: #121212; /* Dark header for contrast */
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        nav {
-            background-color: #111827;
-            padding: 10px;
-            text-align: center;
+
+        .logo-container {
+            height: 50px; 
+            display: flex;
+            align-items: center;
         }
-        nav a {
-            color: white;
-            margin: 0 15px;
+
+        .logo {
+            height: 40px; 
+            width: auto;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2)); 
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li a {
+            color: #ccc;
             text-decoration: none;
-            font-weight: bold;
+            padding: 10px 15px;
+            display: block;
+            transition: color 0.3s, background-color 0.3s;
+            border-radius: 4px;
         }
-        nav a:hover {
-            color: #60a5fa;
+
+        nav ul li a:hover {
+            color: #fff;
+            background-color: #cc0000; /* Stellar Accent Color */
         }
+
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
         section {
-            padding: 30px;
-            background-color: white;
-            margin: 20px;
-            border-radius: 8px;
+            background-color: #fff;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        h2 {
-            color: #1e3a8a;
+
+        h1, h2, h3 {
+            color: #cc0000; /* Bold Stellar Red */
+            border-left: 5px solid #cc0000;
+            padding-left: 10px;
+            margin-bottom: 20px;
         }
-        footer {
-            background-color: #1e3a8a;
-            color: white;
+
+        /* --- CTA Button Style --- */
+        .cta-button {
+            display: inline-block;
+            background-color: #cc0000;
+            color: #fff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 30px; /* Rounded pill shape */
+            margin-top: 15px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: #aa0000;
+            transform: translateY(-2px);
+        }
+
+        /* --- Hero Section Styles --- */
+        #hero {
+            position: relative;
+            padding: 0;
+            background-color: transparent;
+            box-shadow: none;
             text-align: center;
-            padding: 15px;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-height: 550px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .hero-content {
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            margin-top: -60px; 
+            position: relative;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+        }
+
+        .design-preview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .design-feature {
+            padding: 25px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            transition: box-shadow 0.3s;
+        }
+
+        .design-feature:hover {
+            box-shadow: 0 5px 15px rgba(204, 0, 0, 0.1);
+        }
+
+        /* --- Features Sections Styles --- */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .feature-grid div {
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            transition: box-shadow 0.2s;
+        }
+
+        .feature-grid div:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Pricing Section Styles --- */
+        #pricing {
+            /* Full section style */
+            text-align: center;
+        }
+        .model-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
             margin-top: 30px;
+        }
+
+        .card {
+            flex: 1;
+            max-width: 450px;
+            text-align: center;
+            padding: 40px;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .base-model {
+            background-color: #f9f9f9;
+            border: 3px solid #ccc;
+        }
+
+        .top-model {
+            background-color: #121212;
+            color: #fff;
+            border: 3px solid #cc0000;
+        }
+
+        .top-model h3 {
+            color: #ffb3b3; 
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .card ul li {
+            padding: 10px 0;
+            border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
+        }
+
+        .base-model ul li {
+            color: #333;
+            border-bottom: 1px dotted #ddd;
+        }
+
+        .price {
+            font-size: 2.2em;
+            font-weight: 800;
+            margin: 15px 0;
+            color: #cc0000;
+        }
+        .top-model .price {
+            color: #fff;
+        }
+
+        .primary {
+            background-color: #fff;
+            color: #cc0000;
+        }
+
+        .primary:hover {
+            background-color: #eee;
+        }
+
+        .secondary {
+            background-color: #333;
+            color: #fff;
+        }
+        .secondary:hover {
+            background-color: #555;
+        }
+
+        /* --- Footer Styles --- */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #121212;
+            color: #888;
+            margin-top: 40px;
+        }
+
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 900px) {
+            .design-preview-grid, .model-cards {
+                flex-direction: column;
+            }
+            .card {
+                max-width: 100%;
+            }
+        }
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            nav ul li a {
+                padding: 5px 10px;
+            }
         }
     </style>
 </head>
-<body><header>
-    <h1>Web Designing Workshop</h1>
-    <p>BCS-353</p>
-</header><nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#tools">Tools</a>
-    <a href="#contact">Contact</a>
-</nav><section id="home">
-    <h2>Home</h2>
-    <p>This website is created as part of the Web Designing Workshop (BCS-353). It demonstrates the use of HTML and CSS to design a simple and responsive website.</p>
-</section><section id="about">
-    <h2>About Workshop</h2>
-    <p>The Web Designing Workshop focuses on the basics of web development including HTML, CSS, and basic concepts of responsive design. This workshop helps students understand how real websites are created and hosted.</p>
-</section><section id="tools">
-    <h2>Tools & Technologies Used</h2>
-    <ul>
-        <li>HTML5</li>
-        <li>CSS3</li>
-        <li>GitHub Pages (for hosting)</li>
-    </ul>
-</section><section id="contact">
-    <h2>Contact</h2>
-    <p><strong>Student Name:</strong>Shashwat Verma</p>
-    <p><strong>Course:</strong> B.Tech CSE</p>
-    <p><strong>Subject:</strong> Web Designing Workshop (BCS-353)</p>
-</section><footer>
-    <p>© 2025 Web Designing Workshop | BCS-353</p>
-</footer></body>
-                                                                   </html>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="stellar-logo.png" alt="Stellar Car Logo" class="logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#safety">Features & Tech</a></li>
+                <li><a href="#pricing">Pricing & Reserve</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <img src="stellar-car-hero.jpg" alt="Stellar Solar-Powered Car" class="hero-image">
+            <div class="hero-content">
+                <h1>Stellar: Crafted with Innovation, Driven with Perfection</h1>
+                <p>Introducing Stellar, a solar-powered car that redefines the future of driving.</p>
+                <a href="#pricing" class="cta-button">Experience the Thrill - Reserve Now</a>
+            </div>
+        </section>
+
+        <section id="sustainability">
+            <h2>The Power of Sustainability</h2>
+            <p>Experience the thrill of innovation and the power of sustainability with Stellar.</p>
+            <p>It's not just a car; it's a statement about a sustainable and thrilling future.</p>
+        </section>
+
+        <section id="safety">
+            <h2>Safety Features</h2>
+            <p>Your security is our priority, featuring advanced driver assistance systems.</p>
+            <div class="feature-grid">
+                <div>
+                    <h3>Adaptive Cruise Control</h3>
+                    <p>Maintains a safe distance from the car ahead, automatically adjusting speed.</p>
+                </div>
+                <div>
+                    <h3>Emergency Brake Assist</h3>
+                    <p>Automatically applies brakes to prevent or mitigate collisions in emergency situations.</p>
+                </div>
+                <div>
+                    <h3>Adaptive Headlights</h3>
+                    <p>Adjusts the beam pattern based on road conditions and traffic, enhancing visibility at night.</p>
+                </div>
+                <div>
+                    <h3>Rearview Camera & Parking Sensors</h3>
+                    <p>Provides a clear view of what’s behind and alerts the driver to obstacles while parking.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="performance">
+            <h2>Performance Features</h2>
+            <p>Engineered for precise handling and enhanced stability under challenging conditions.</p>
+            <div class="feature-grid">
+                <div>
+                    <h3>Torque Vectoring</h3>
+                    <p>Distributes torque to individual wheels for precise handling and enhanced cornering performance.</p>
+                </div>
+                <div>
+                    <h3>All-wheel Drive (AWD)</h3>
+                    <p>Delivers power to all four wheels for enhanced traction and stability.</p>
+                </div>
+                <div>
+                    <h3>eLSD</h3>
+                    <p>The Electronic Limited Slip Differential distributes power to wheels with better traction, improving handling.</p>
+                </div>
+                <div>
+                    <h3>Drive Modes</h3>
+                    <p>Allows drivers to choose from different driving modes, such as Eco, Sport, and Comfort.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="design">
+            <h2>Technology & Design Highlights</h2>
+            <div class="feature-grid">
+                <div>
+                    <h3>Voice-Activated Controls</h3>
+                    <p>Allows drivers to control various functions using voice commands.</p>
+                </div>
+                <div>
+                    <h3>Frameless Doors</h3>
+                    <p>Doors without a traditional window frame, providing a sleek and modern appearance.</p>
+                </div>
+                <div>
+                    <h3>Panoramic Sunroof</h3>
+                    <p>A large, all-glass sunroof extends across the roof of the car, allowing natural light into the cabin.</p>
+                </div>
+                <div>
+                    <h3>In-Car Wi-Fi Hotspot</h3>
+                    <p>Turns your car into a mobile hotspot, allowing passengers to connect their devices to the internet.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing">
+            <h1>Pricing & Promotions</h1>
+            <p>Stellar offers a range of models to suit your needs and budget.</p>
+
+            <section id="models" style="box-shadow: none; margin-bottom: 0;">
+                <h2>Choose Your Stellar</h2>
+                <div class="model-cards">
+                    <div class="card base-model">
+                        <h3>Stellar Base Model</h3>
+                        <p class="price">Starts at **INR 8 lakhs**</p>
+                        <ul>
+                            <li>Features advanced safety, comfort, and smart connectivity.</li>
+                            <li>Wireless Connectivity for hands-free calling and music streaming.</li>
+                            <li>Includes Adaptive Cruise Control.</li>
+                        </ul>
+                        <a href="#" class="cta-button">Reserve Base Model</a>
+                    </div>
+
+                    <div class="card top-model">
+                        <h3>Stellar Pinnacle (Top-Tier)</h3>
+                        <p class="price">Priced at **INR 15 lakhs**</p>
+                        <ul>
+                            <li>Boasts luxurious features like leather seating.</li>
+                            <li>Includes advanced driver assistance, and a premium audio system.</li>
+                            <li>Full performance package with AWD and eLSD.</li>
+                        </ul>
+                        <a href="#" class="cta-button primary">Configure & Reserve Pinnacle</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="promotion">
+                <h2>Experience Stellar Virtually</h2>
+                <p>Our promotional campaign leverages digital platforms like Instagram, Facebook, and Twitter.</p>
+                <p>Explore the car from anywhere using **VR and AR experiences**!</p>
+                <a href="#" class="cta-button secondary">Follow Our Campaign</a>
+            </section>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Stellar Car. Designed by Shashwat Verma.</p>
+        <p>Thank You ☺</p>
+    </footer>
+
+</body>
+</html>
+
